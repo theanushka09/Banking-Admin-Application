@@ -1,0 +1,32 @@
+package Utilities;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+public class CSV_functionality {
+	//method for reading data from csv file and returning it as a list
+	public static List<String[]> read(String file) {
+		List<String[]> res= new LinkedList<String[]>();
+		String row;
+		
+		try {
+		 BufferedReader br= new BufferedReader(new FileReader(file));
+		 while((row= br.readLine())!= null) {
+			 String[] records = row.split(",");
+			 res.add(records);
+		 }
+		 
+		}catch(FileNotFoundException e) {
+			System.out.println("File Not Found");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Could Not Read File");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+}
